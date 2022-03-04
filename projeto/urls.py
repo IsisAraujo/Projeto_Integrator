@@ -20,3 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('seriados/', include('seriados.urls')),
 ]
+handler404 = "projeto.views.handler404"
