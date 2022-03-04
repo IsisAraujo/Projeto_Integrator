@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -9,26 +10,31 @@ class Serie(models.Model):
     def __str__(self):
         return self.nome
 
+    def get_absolute_url(self):
+        return reverse('seriados:serie_details', kwargs={'pk': self.pk})
+
 
 class Temporada(models.Model):
     numero = models.IntegerField()
     serie = models.ForeignKey(Serie, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.serie.nome}: {self.numero}"
+
+    def get_absolute_url(self):
+        return reverse('seriados:temporada_details', kwargs={'pk': self.pk})
+
 
 class Episodio(models.Model):
     data = models.DateField()
-    titulo = models.CharField(max_length=200)
+    titulo = models.CharField(max_length=200, verbose_name="Título")
     temporada = models.ForeignKey(Temporada, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.titulo
-
-    # def get_absolute_url(self):
-    #     return "/seriados/episodios/%i/" % self.id
+        return f"{self.temporada.serie.nome} - {self.temporada.numero}: {self.titulo}"
 
     def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('seriados:episodio_detalhes', kwargs={'pk': self.pk})
+        return reverse('seriados:episodio_details', kwargs={'pk': self.pk})
 
     def eh_antigo(self):
         import datetime
@@ -40,44 +46,8 @@ class Episodio(models.Model):
 class Revisor(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    # reviews_episodios = models.ManyToManyField(Episodio)
     reviews_episodios = models.ManyToManyField(
         Episodio, through='ReviewEpisodio')
-
-
-# class ReviewEpisodio(models.Model):
-#     episodio = models.ForeignKey(Episodio, on_delete=models.CASCADE)
-#     revisor = models.ForeignKey(Revisor, on_delete=models.CASCADE)
-#     nota = models.IntegerField(validators=[
-#         MinValueValidator(0),
-#         MaxValueValidator(5)
-#     ])
-
-# class ReviewEpisodio(models.Model):
-#     episodio = models.ForeignKey(Episodio, on_delete=models.CASCADE)
-#     revisor = models.ForeignKey(Revisor, on_delete=models.CASCADE)
-#     nota = models.CharField(max_length=1, choices=(
-#         ('A', "Excelente"),
-#         ('B', "Bom"),
-#         ('D', "Ruim"),
-#     ))
-
-# class ReviewEpisodio(models.Model):
-#     NOTA_A = 'A'
-#     NOTA_B = 'B'
-#     NOTA_C = 'C'
-#     NOTAS_CHOICES = [
-#         (NOTA_A, "Excelente"),
-#         (NOTA_B, "Bom"),
-#         (NOTA_C, "Ruim"),
-#     ]
-#     episodio = models.ForeignKey(Episodio, on_delete=models.CASCADE)
-#     revisor = models.ForeignKey(Revisor, on_delete=models.CASCADE)
-#     nota = models.CharField(
-#         max_length=1,
-#         choices=NOTAS_CHOICES,
-#         default = NOTA_B
-#     )
 
 
 class ReviewEpisodio(models.Model):
