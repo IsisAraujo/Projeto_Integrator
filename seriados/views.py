@@ -87,6 +87,11 @@ class TemporadaListView(ListView):
     template_name = 'temporada_list.html'
     model = Temporada
 
+    def get_queryset(self):
+        search = self.request.GET.get('search', "")
+
+        return super().get_queryset().filter(serie__nome__contains=search)
+
 
 class TemporadaDetail(DetailView):
     template_name = "temporada_details.html"
