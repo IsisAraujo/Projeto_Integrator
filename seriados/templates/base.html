@@ -1,32 +1,309 @@
 {% load static %}
 {% load i18n %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Python para Negócios</title>
-        <meta charset="utf-8">
+<!doctype html>
+<html lang="pt">
 
-        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous">
-        </script>
-        <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}" ></script>
-    </head>
-    <body>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    {% block navbar %}
-                        {% include 'navbar.html' %}
-                    {% endblock %}
-                </div>
-            </nav>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            {% block content %}
-                <p>Não há nenhum conteúdo aqui!</p>
-            {% endblock %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Python para Negócios!</title>
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <nav class="navbar col-12 position-fixed navbar-expand-lg navbar-dark bg-dark" style="z-index: 999;">
+        <div class="container-fluid col-11 m-auto">
+            <a class="navbar-brand" href={% url 'seriados:home' %}>Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href={% url 'seriados:serie_list' %}>Séries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'seriados:temporada_list' %}>Temporadas</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Episódios
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href={% url 'seriados:episodio_list' %}>Todos</a></li>
+                            <li><a class="dropdown-item" href={% url 'seriados:episodio_busca_list' %}>Busca Avançada</a></li>
+                            <li><a class="dropdown-item" href={% url 'seriados:episodio_nota_list' nota='A'%}>Nota A</a></li>
+                            <li><a class="dropdown-item" href={% url 'seriados:episodio_nota_list' nota='B'%}>Nota B</a></li>
+                            <li><a class="dropdown-item" href={% url 'seriados:episodio_nota_list' nota='C'%}>Nota C</a></li>
+                        
+                                <hr class="dropdown-divider">
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'seriados:contact' %}>Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'seriados:about' %}>Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'admin:index' %}>Admin</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Procurar Séries</button>
+                </form>
+            </div>
         </div>
-    </body>
+    </nav>
+    <br><br><br>
+    <div class="row row-cols-1 row-cols-md-2 g-4 col-11 m-auto">
+        <div class="col">
+            <div class="card">
+                <img src="img" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Grey's Anatomy</h5>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Veja mais
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="/s class="card-img-top" alt="...">
+                                    <p>
+                                        Em Grey's Anatomy, os médicos do Grey Sloan Memorial Hospital/Seattle Grace
+                                        Hospital lidam diariamente com casos de vida ou morte. É um no outro que eles
+                                        encontram apoio, conforto, amizade e até mesmo amor. Juntos, eles se esforçam
+                                        para conciliar os dramas profissionais com os pessoais, descobrindo que ambos
+                                        podem - e vão - se misturar no meio do caminho.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="/static/img/guerra dos tronos.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">A Guerra dos Tronos</h5>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Veja mais
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="/static/img/guerra dos tronos.jpg" class="card-img-top" alt="...">
+                                    <p>
+                                        Na série baseada no best-seller As Crônicas de Gelo e Fogo (“A Song of Ice and
+                                        Fire”), de George R.R. Martin, o Trono de Ferro está em jogo e duas famílias
+                                        dominantes dos Sete
+                                        Reinos o querem. Não existem leis, guerreiros lutam ao lado de traidores e
+                                        renegados. Verões
+                                        podem durar décadas e invernos até a vida inteira. Quem vencerá essa batalha
+                                        épica?
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="/static/img/stranger.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Stranger Things</h5>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Veja mais
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="/static/img/stranger.jpg" class="card-img-top" alt="...">
+                                    <p>
+                                        Na pequena cidade de Hawkins, a mãe solteira Joyce (Winona Ryder) fica
+                                        desesperada quando seu filho Will (Noah Schnapp), de 12 anos, desaparece sem
+                                        deixar vestígios.
+                                        Os moradores próximos buscam por respostas e se veem envolvidos numa armadilha
+                                        de experimentos secretos e eventos sobrenaturais que assombram a sua cidade há
+                                        décadas.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="/static/img/vis.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Vis a vis</h5>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Veja mais
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="/static/img/vis.jpg" class="card-img-top" alt="...">
+                                    <p>
+                                        Macarena (Maggie Civantos) se envolveu com seu antigo chefe e, pela ingenuidade
+                                        da paixão, acabou sendo presa e acusada de crimes fiscais. Agora ela terá que
+                                        lidar com a vida na cadeia enquanto a sua família tenta libertá-la.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="col-11 m-auto">
+        <h2 class="text-center">Meu Título</h2>
+        <p class="text-center">
+            Mussum Ipsum, cacilds vidis litro abertis. Praesent vel viverra nisi. Mauris aliquet nunc non turpis
+            scelerisque, eget.Sapien in monti palavris qui num significa nadis i pareci latim.Atirei o pau no gatis, per
+            gatis num morreus.Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio.
+
+            Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!Manduma pindureta quium dia nois
+            paga.Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum.Per aumento de
+            cachacis, eu reclamis.
+        </p>
+
+    </div>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br>
+    <br>
+    <br>
+    <br> <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+
 </html>
