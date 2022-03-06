@@ -25,8 +25,10 @@ urlpatterns = [
     path('episodio/inserir/', views.EpisodioCreateView.as_view(),
          name='episodio_insert'),
 
-    path('episodio/nota/<str:nota>/', views.episodio_nota_list,
-         name='episodio_nota_list'),
+    path('episodio/nota/<str:nota>/',
+         views.episodio_nota_list, name='episodio_nota_list'),
+    path('episodio/busca/', views.EpisodioBuscaListView.as_view(),
+         name='episodio_busca_list'),
 
     # ---
 

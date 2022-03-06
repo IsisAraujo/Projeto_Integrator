@@ -1,3 +1,6 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -39,7 +42,6 @@ def prepare_data_detail(_object, fields_name):
 
 # ---
 
-
 def serie_list(request):
     objects = Serie.objects.all()
     labels, rows = prepare_data_list(objects, ['nome'])
@@ -61,6 +63,7 @@ def serie_details(request, pk):
     return render(request, 'details.html', context)
 
 
+@login_required
 def serie_insert(request):
     if request.method == 'GET':
         form = SerieForm()
@@ -98,18 +101,18 @@ class TemporadaDetail(DetailView):
     model = Temporada
 
 
-class TemporadaUpdateView(UpdateView):
+class TemporadaUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'form_generic.html'
     model = Temporada
     fields = ['serie', 'numero']
 
 
-class TemporadaCreateView(CreateView):
+class TemporadaCreateView(LoginRequiredMixin, CreateView):
     template_name = 'form_generic.html'
     form_class = TemporadaForm
 
 
-class TemporadaDeleteView(DeleteView):
+class TemporadaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "temporada_confirm_delete.html"
     model = Temporada
 
@@ -169,6 +172,52 @@ def episodio_nota_list(request, nota):
     objects = Episodio.objects.filter(reviewepisodio__nota=nota)
     context = {'objects': objects, 'nota': nota}
     return render(request, 'episodio_nota_list.html', context)
+
+
+"""
+class EpisodioBuscaListView(ListView):
+    template_name = 'episodio_busca_list.html'
+    model = Episodio
+
+    def get_queryset(self):
+        search = self.request.GET.get('search', "")
+        q = Q(titulo__contains=search) | Q(temporada__serie__nome__contains=search)
+
+        try:
+            isearch = int(search)
+        except ValueError:
+            pass
+        else:
+            q = q | Q(temporada__numero=isearch)
+
+        qs = super().get_queryset().filter(q)
+        print(qs.query)
+        return qs
+"""
+
+
+class EpisodioBuscaListView(ListView):
+    template_name = 'episodio_busca_list.html'
+    model = Episodio
+
+    def get_queryset(self):
+        search = self.request.GET.get('search', "")
+        q = Q(titulo__contains=search) | Q(
+            temporada__serie__nome__contains=search)
+
+        for term in search.split():
+            q = q | Q(titulo__contains=term)
+            q = q | Q(temporada__serie__nome__contains=term)
+            try:
+                i_term = int(term)
+            except ValueError:
+                pass
+            else:
+                q = q | Q(temporada__numero=i_term)
+
+        qs = super().get_queryset().filter(q)
+        # print(qs.query)
+        return qs
 
 
 class Contact(TemplateView):
