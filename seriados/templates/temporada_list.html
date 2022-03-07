@@ -1,19 +1,39 @@
-{% extends "base.html" %}
 
 {% block content %}
-<h1>Lista de Temporadas</h1>
+<br>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/personalizado.css" rel="stylesheet">
+</head>
+<body>  
+  <div class="container theme-showcase" role="main">
+      <div class="page-header">
+        <img src="/static/bootstrap/img/book.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+         <h1>Lista de Temporadas</h1>
+      </div>
+<br>
+<table border="2px">
+  <tr>
+      <th>Série</th>
+      <th>Temporada</th>
+  </tr>
 
-<table border="1px">
-    <tr>
-        <th>Série</th>
-        <th>Temporada</th>
-    </tr>
-
-    {% for object in object_list %}
-        <tr>
-            <td>{{ object.serie.nome }}</td>
-            <td>{{ object.numero }}</td>
-        </tr>
-    {% endfor %}
+  {% for object in object_list %}
+      <tr>
+          <td>{{ object.serie.nome }}</td>
+          <td>{{ object.numero }}</td>
+      </tr>
+  {% endfor %}
 </table>
+<br>      
+<button type="button" class="btn btn-default"><a href="{% url 'seriados:home' %}">Página Inicial</button>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
 {% endblock %}
