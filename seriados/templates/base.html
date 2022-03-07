@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <!doctype html>
-<html lang="pt">
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -23,7 +23,7 @@
         crossorigin="anonymous"></script>
     <nav class="navbar col-12 position-fixed navbar-expand-lg navbar-dark bg-dark" style="z-index: 999;">
         <div class="container-fluid col-11 m-auto">
-            <a class="navbar-brand" href={% url 'seriados:home' %}>Home</a>
+            <a class="navbar-brand" href={% url 'seriados:home'%}>Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -70,178 +70,57 @@
             </div>
         </div>
     </nav>
-    <br><br><br>
-    <div class="row row-cols-1 row-cols-md-2 g-4 col-11 m-auto">
-        <div class="col">
-            <div class="card">
-                <img src="img" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Grey's Anatomy</h5>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Veja mais
-                    </button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="/s class="card-img-top" alt="...">
-                                    <p>
-                                        Em Grey's Anatomy, os médicos do Grey Sloan Memorial Hospital/Seattle Grace
-                                        Hospital lidam diariamente com casos de vida ou morte. É um no outro que eles
-                                        encontram apoio, conforto, amizade e até mesmo amor. Juntos, eles se esforçam
-                                        para conciliar os dramas profissionais com os pessoais, descobrindo que ambos
-                                        podem - e vão - se misturar no meio do caminho.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+    
+    <div class="card-group col-11 m-auto">
+        <div class="card">
+          <img src="/static/bootstrap/img/grays.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Grey's Anatomy</h5>
+            <p class="card-text">Em Grey's Anatomy, os médicos do Grey Sloan Memorial Hospital/Seattle Grace
+                Hospital lidam diariamente com casos de vida ou morte. É um no outro que eles
+                encontram apoio, conforto, amizade e até mesmo amor. Juntos, eles se esforçam
+                para conciliar os dramas profissionais com os pessoais, descobrindo que ambos
+                podem - e vão - se misturar no meio do caminho.
+            </p>
+          </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="/static/img/guerra dos tronos.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">A Guerra dos Tronos</h5>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Veja mais
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="/static/img/guerra dos tronos.jpg" class="card-img-top" alt="...">
-                                    <p>
-                                        Na série baseada no best-seller As Crônicas de Gelo e Fogo (“A Song of Ice and
-                                        Fire”), de George R.R. Martin, o Trono de Ferro está em jogo e duas famílias
-                                        dominantes dos Sete
-                                        Reinos o querem. Não existem leis, guerreiros lutam ao lado de traidores e
-                                        renegados. Verões
-                                        podem durar décadas e invernos até a vida inteira. Quem vencerá essa batalha
-                                        épica?
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div class="card">
+          <img src="/static/bootstrap/img/guerra dos tronos.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">A Guerra dos Tronos</h5>
+            <p class="card-text">Na série baseada no best-seller As Crônicas de Gelo e Fogo (“A Song of Ice and
+                Fire”), de George R.R. Martin, o Trono de Ferro está em jogo e duas famílias
+                dominantes dos Sete Reinos o querem. Não existem leis, guerreiros lutam ao lado de traidores e
+                renegados. Verões podem durar décadas e invernos até a vida inteira. Quem vencerá essa batalha
+                épica?
+            </p>
+            
+          </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="/static/img/stranger.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Stranger Things</h5>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Veja mais
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="/static/img/stranger.jpg" class="card-img-top" alt="...">
-                                    <p>
-                                        Na pequena cidade de Hawkins, a mãe solteira Joyce (Winona Ryder) fica
-                                        desesperada quando seu filho Will (Noah Schnapp), de 12 anos, desaparece sem
-                                        deixar vestígios.
-                                        Os moradores próximos buscam por respostas e se veem envolvidos numa armadilha
-                                        de experimentos secretos e eventos sobrenaturais que assombram a sua cidade há
-                                        décadas.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <div class="card">
+          <img src="/static/bootstrap/img/stranger.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Stranger Things</h5>
+            <p class="card-text">  Na pequena cidade de Hawkins, a mãe solteira Joyce (Winona Ryder) fica
+                desesperada quando seu filho Will (Noah Schnapp), de 12 anos, desaparece sem
+                deixar vestígios.
+                Os moradores próximos buscam por respostas e se veem envolvidos numa armadilha
+                de experimentos secretos e eventos sobrenaturais que assombram a sua cidade há
+                décadas.
+            </p>
+        
+          </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="/static/img/vis.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Vis a vis</h5>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Veja mais
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="/static/img/vis.jpg" class="card-img-top" alt="...">
-                                    <p>
-                                        Macarena (Maggie Civantos) se envolveu com seu antigo chefe e, pela ingenuidade
-                                        da paixão, acabou sendo presa e acusada de crimes fiscais. Agora ela terá que
-                                        lidar com a vida na cadeia enquanto a sua família tenta libertá-la.
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+      </div>
+    
     <hr>
 
     <div class="col-11 m-auto">
@@ -306,4 +185,5 @@
     <br>
 </body>
 
-</html>
+</html>   
+    
